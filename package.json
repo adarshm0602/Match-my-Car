@@ -1,0 +1,26 @@
+{
+  "name": "match-my-car",
+  "version": "1.0.0",
+  "description": "The digital car showroom.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adarshm0602/Match-my-Car.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/adarshm0602/Match-my-Car/issues"
+  },
+  "homepage": "https://github.com/adarshm0602/Match-my-Car#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.1.2"
+  }
+}
