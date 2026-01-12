@@ -1,0 +1,27 @@
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sort-dropdown label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  min-width: 180px;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #2563eb;
+}

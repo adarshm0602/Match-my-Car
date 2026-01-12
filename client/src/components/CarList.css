@@ -1,0 +1,60 @@
+.car-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.car-list-loading,
+.car-list-error,
+.car-list-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  min-height: 400px;
+}
+
+.car-list-loading p,
+.car-list-error p,
+.car-list-empty p {
+  margin-top: 16px;
+  color: #666;
+}
+
+.car-list-empty h3 {
+  margin: 16px 0 8px 0;
+  color: #1a1a1a;
+}
+
+.car-list-empty p:first-child {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #2563eb;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.car-list-error {
+  color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .car-list {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+  }
+}
