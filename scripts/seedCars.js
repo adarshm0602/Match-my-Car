@@ -52,7 +52,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/toyota-camry-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Toyota/Camry/11344/1764935587893/front-left-side-47.jpg",
       "https://example.com/toyota-camry-2.jpg",
     ],
   },
@@ -99,7 +99,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/honda-city-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Honda/City/12093/1755764990493/front-left-side-47.jpg",
       "https://example.com/honda-city-2.jpg",
     ],
   },
@@ -146,7 +146,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/maruti-swift-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Swift/9226/1751526426469/exterior-image-164.jpg",
       "https://example.com/maruti-swift-2.jpg",
     ],
   },
@@ -200,7 +200,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/hyundai-creta-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Hyundai/Creta/8667/1751535724464/exterior-image-166.jpg",
       "https://example.com/hyundai-creta-2.jpg",
     ],
   },
@@ -254,7 +254,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/tata-nexon-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Tata/Nexon/9675/1756364066883/exterior-image-164.jpg",
       "https://example.com/tata-nexon-2.jpg",
     ],
   },
@@ -301,7 +301,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/mahindra-xuv700-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Mahindra/XUV700/10794/1762509966753/exterior-image-164.jpg",
       "https://example.com/mahindra-xuv700-2.jpg",
     ],
   },
@@ -348,7 +348,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/toyota-innova-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Toyota/Innova-Crysta/9608/1755846139274/front-left-side-47.jpg",
       "https://example.com/toyota-innova-2.jpg",
     ],
   },
@@ -395,7 +395,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/hyundai-i20-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Hyundai/i20/11092/1755058597906/exterior-image-164.jpg",
       "https://example.com/hyundai-i20-2.jpg",
     ],
   },
@@ -442,7 +442,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/tata-punch-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Tata/Punch/9623/1762425606238/exterior-image-164.jpg",
       "https://example.com/tata-punch-2.jpg",
     ],
   },
@@ -489,7 +489,7 @@ const sampleCars = [
       },
     ],
     images: [
-      "https://example.com/maruti-brezza-1.jpg",
+      "https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Brezza/10387/1753880635233/exterior-image-164.jpg",
       "https://example.com/maruti-brezza-2.jpg",
     ],
   },

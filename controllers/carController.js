@@ -37,8 +37,16 @@ const getFilteredCars = async (req, res) => {
     let query = {};
 
     // Top-level filters (directly on car document)
+    // #region agent log
+    const fs = require('fs');
+    const logPath = '/Users/adarshm/Desktop/Adarsh M/full stack /Match my Car/Match-my-Car/.cursor/debug.log';
+    fs.appendFileSync(logPath, JSON.stringify({location:'carController.js:39',message:'Backend received query params',data:{brand,model},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})+'\n');
+    // #endregion
     if (brand) query.brand = new RegExp(brand, "i"); // Case-insensitive search
     if (model) query.model = new RegExp(model, "i"); // Case-insensitive model search
+    // #region agent log
+    fs.appendFileSync(logPath, JSON.stringify({location:'carController.js:42',message:'Backend query object after regex',data:{queryBrand:query.brand?.toString(),queryModel:query.model?.toString()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})+'\n');
+    // #endregion
     if (bodyType) query.bodyType = bodyType;
     if (seating) query.seatingCapacity = Number(seating);
 
@@ -77,10 +85,16 @@ const getFilteredCars = async (req, res) => {
     const totalCars = await Car.countDocuments(query);
 
     // Fetch cars with filters, sorting, and pagination
+    // #region agent log
+    fs.appendFileSync(logPath, JSON.stringify({location:'carController.js:82',message:'Before database query',data:{query:JSON.stringify(query)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})+'\n');
+    // #endregion
     const cars = await Car.find(query)
       .sort(sortOptions)
       .skip(skip)
       .limit(Number(limit));
+    // #region agent log
+    fs.appendFileSync(logPath, JSON.stringify({location:'carController.js:85',message:'After database query',data:{carsCount:cars.length,firstCarBrand:cars[0]?.brand,firstCarModel:cars[0]?.model},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})+'\n');
+    // #endregion
 
     res.status(200).json({
       success: true,

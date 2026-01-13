@@ -8,7 +8,10 @@
 import axios from 'axios';
 
 // Base URL for the API - points to our Express backend
-const API_BASE_URL = 'http://localhost:3000/api/cars';
+// Use environment variable in production, fallback to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_URL 
+  ? `${import.meta.env.VITE_API_URL}/api/cars`
+  : 'http://localhost:3000/api/cars';
 
 /**
  * Build query string from filter object

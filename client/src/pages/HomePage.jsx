@@ -71,7 +71,14 @@ const HomePage = () => {
         };
 
         // Add filters to query if they exist
-        if (filters.brand) queryParams.brand = filters.brand;
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a6a0edaa-9857-4ee8-8fc4-950ca8046c48',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomePage.jsx:73',message:'Before filter processing',data:{filtersBrand:filters.brand,filtersSearch:filters.search},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
+        // Only set brand from filters.brand if there's no search term (search parsing will handle brand/model when search exists)
+        if (filters.brand && !filters.search) queryParams.brand = filters.brand;
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a6a0edaa-9857-4ee8-8fc4-950ca8046c48',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomePage.jsx:77',message:'After setting brand from filters.brand',data:{queryParamsBrand:queryParams.brand,skippedBrandDueToSearch:!!filters.search},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
         if (filters.bodyType) {
           // Handle array of body types - use first one for now
           if (Array.isArray(filters.bodyType) && filters.bodyType.length > 0) {
@@ -95,15 +102,28 @@ const HomePage = () => {
         // Handle search: parse "brand model" format
         if (filters.search) {
           const searchTerms = filters.search.trim().split(/\s+/);
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/a6a0edaa-9857-4ee8-8fc4-950ca8046c48',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomePage.jsx:97',message:'Search parsing started',data:{searchTerm:filters.search,searchTerms,searchTermsLength:searchTerms.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+          // #endregion
           if (searchTerms.length > 0) {
             queryParams.brand = searchTerms[0]; // First word is brand
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/a6a0edaa-9857-4ee8-8fc4-950ca8046c48',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomePage.jsx:100',message:'Set brand from search',data:{queryParamsBrand:queryParams.brand,parsedBrand:searchTerms[0]},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+            // #endregion
           }
           if (searchTerms.length > 1) {
             queryParams.model = searchTerms.slice(1).join(' '); // Rest is model
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/a6a0edaa-9857-4ee8-8fc4-950ca8046c48',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomePage.jsx:103',message:'Set model from search',data:{queryParamsModel:queryParams.model,parsedModel:searchTerms.slice(1).join(' ')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+            // #endregion
           }
         }
         if (filters.sortBy) queryParams.sortBy = filters.sortBy;
         if (filters.order) queryParams.order = filters.order;
+
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/a6a0edaa-9857-4ee8-8fc4-950ca8046c48',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomePage.jsx:108',message:'Final queryParams before API call',data:{queryParams:JSON.stringify(queryParams)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+        // #endregion
 
         const response = await getCars(queryParams);
         
@@ -136,7 +156,14 @@ const HomePage = () => {
 
   // Handle search
   const handleSearch = useCallback((searchTerm) => {
-    handleFilterChange({ search: searchTerm, brand: searchTerm || null });
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/a6a0edaa-9857-4ee8-8fc4-950ca8046c48',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomePage.jsx:138',message:'handleSearch called',data:{searchTerm},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+    // Only set search term, not brand - search parsing will handle brand/model extraction
+    handleFilterChange({ search: searchTerm, brand: null });
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/a6a0edaa-9857-4ee8-8fc4-950ca8046c48',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomePage.jsx:140',message:'handleSearch after handleFilterChange',data:{searchTerm,brandCleared:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
   }, [handleFilterChange]);
 
   // Handle sort change
