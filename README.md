@@ -2,6 +2,16 @@
 
 A complete MERN stack application that helps users find cars matching their preferences by filtering through a comprehensive database of cars and their specifications. The application features a modern React frontend with advanced filtering capabilities and a robust Express.js backend API.
 
+## 🌐 Live Demo
+
+| | URL |
+|--|-----|
+| **Live App** | [match-my-car.vercel.app](https://match-my-car.vercel.app) |
+| **API** | [match-my-car-api.onrender.com](https://match-my-car-api.onrender.com) |
+| **Source Code** | [github.com/adarshm0602/Match-my-Car](https://github.com/adarshm0602/Match-my-Car) |
+
+> **Note**: The backend is hosted on Render's free tier, so the first request may take 30-60 seconds while the server wakes up.
+
 ## 📋 Table of Contents
 
 - [Project Overview](#project-overview)
@@ -458,6 +468,43 @@ curl http://localhost:3000/api/cars/filters/price-range
 - Database seeding script
 - Deployment configuration (Render + Vercel)
 - Comprehensive documentation (README, API docs, Quick Start, Deployment guide)
+
+## 🚀 Future Roadmap
+
+### AI-Powered Features (Planned)
+
+**1. AI Car Recommendation Engine**
+- Natural language car search (e.g., "Find me a family SUV under 20 lakhs with good mileage")
+- Personalized recommendations based on user preferences and browsing history
+- Smart comparison suggestions between similar cars
+
+**2. AI Chatbot Assistant**
+- Interactive chatbot to help users find the perfect car
+- Answer questions about car specifications, comparisons, and features
+- Provide buying advice based on user requirements
+
+**3. Intelligent Price Prediction**
+- ML-based price prediction for used cars
+- Market trend analysis and price forecasting
+- Best time to buy recommendations
+
+**4. Image Recognition Features**
+- Upload a car image to identify make and model
+- Visual similarity search to find cars with similar styling
+- Damage assessment for used car evaluation
+
+**5. Sentiment Analysis**
+- Aggregate and analyze car reviews from multiple sources
+- Provide sentiment scores for different aspects (comfort, performance, reliability)
+- Highlight common praise and complaints for each model
+
+### Other Planned Enhancements
+- User authentication and saved preferences
+- Car comparison tool (side-by-side comparison)
+- Dealer locator with map integration
+- EMI calculator and financing options
+- Test drive booking system
+- Push notifications for price drops
 
 ## 🎓 Learning Resources
 
