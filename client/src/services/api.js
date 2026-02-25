@@ -7,10 +7,12 @@
 
 import axios from 'axios';
 
-// Base URL for the API - uses environment variable in production, localhost in development
-const API_BASE_URL = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api/cars`
-  : 'http://localhost:3000/api/cars';
+// Base URL for the API
+// In development, use relative URLs so Vite proxy handles routing to localhost:3000
+// In production, use the VITE_API_URL environment variable
+const API_ROOT = import.meta.env.VITE_API_URL || '';
+const API_BASE_URL = `${API_ROOT}/api/cars`;
+const AI_BASE_URL = `${API_ROOT}/api/ai`;
 
 /**
  * Build query string from filter object
@@ -41,13 +43,15 @@ const buildQueryString = (filters) => {
  * @param {Object} filters - Filter object with properties like brand, bodyType, minPrice, etc.
  * @returns {Promise} Promise that resolves to cars data
  */
-export const getCars = async (filters = {}) => {
+export const getCars = async (filters = {}, signal) => {
   try {
     const queryString = buildQueryString(filters);
-    const response = await axios.get(`${API_BASE_URL}${queryString}`);
+    const response = await axios.get(`${API_BASE_URL}${queryString}`, { signal });
     return response.data;
   } catch (error) {
-    console.error('Error fetching cars:', error);
+    if (axios.isCancel(error) || error.name === 'AbortError' || error.name === 'CanceledError') {
+      throw error; // Let caller handle abort silently
+    }
     throw error;
   }
 };
@@ -57,12 +61,14 @@ export const getCars = async (filters = {}) => {
  * @param {string} id - Car ID
  * @returns {Promise} Promise that resolves to car data
  */
-export const getCarById = async (id) => {
+export const getCarById = async (id, signal) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/${id}`);
+    const response = await axios.get(`${API_BASE_URL}/${id}`, { signal });
     return response.data;
   } catch (error) {
-    console.error('Error fetching car:', error);
+    if (axios.isCancel(error) || error.name === 'AbortError' || error.name === 'CanceledError') {
+      throw error;
+    }
     throw error;
   }
 };
@@ -118,7 +124,47 @@ export const getCarStats = async () => {
     const response = await axios.get(`${API_BASE_URL}/stats/overview`);
     return response.data.data;
   } catch (error) {
-    console.error('Error fetching stats:', error);
     throw error;
   }
+};
+
+/**
+ * Get AI-powered car recommendations
+ * @param {Object} preferences - { budget, familySize, priorities, usage, fuelPreference }
+ */
+export const getAIRecommendations = async (preferences) => {
+  const response = await axios.post(`${AI_BASE_URL}/recommend`, preferences);
+  return response.data;
+};
+
+/**
+ * Get AI-powered car comparison
+ * @param {string[]} carIds - Array of 2-3 car IDs to compare
+ */
+export const getAIComparison = async (carIds) => {
+  const response = await axios.post(`${AI_BASE_URL}/compare`, { carIds });
+  return response.data;
+};
+
+// ---- Admin CRUD (requires API key) ----
+
+export const createCar = async (carData, apiKey) => {
+  const response = await axios.post(API_BASE_URL, carData, {
+    headers: { 'x-api-key': apiKey },
+  });
+  return response.data;
+};
+
+export const updateCar = async (id, carData, apiKey) => {
+  const response = await axios.put(`${API_BASE_URL}/${id}`, carData, {
+    headers: { 'x-api-key': apiKey },
+  });
+  return response.data;
+};
+
+export const deleteCar = async (id, apiKey) => {
+  const response = await axios.delete(`${API_BASE_URL}/${id}`, {
+    headers: { 'x-api-key': apiKey },
+  });
+  return response.data;
 };
